@@ -7,17 +7,19 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{width:100%;height:100%;overflow:hidden;font-family:'IBM Plex Mono',monospace,sans-serif;background:#dce6ee}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'IBM Plex Mono',monospace,sans-serif;background:#f4f6f8}
 body{display:flex;flex-direction:column}
 /* HEADER */
-#tb{background:#1a2e3e;padding:6px 14px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;height:38px}
-#tb .t1{font-size:10px;font-weight:600;color:#7dd8e8;letter-spacing:2px;text-transform:uppercase}
-#tb .t2{font-size:8px;color:#4a6a7a;margin-top:1px;letter-spacing:1px}
-#tb .bd{font-size:7px;color:#4a6a7a;border:1px solid #2a4a5a;padding:2px 8px;letter-spacing:1px;white-space:nowrap}
+#tb{background:#1a2e3e;padding:10px 20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;height:40px;position:relative}
+#tb .t1{font-size:13px;font-weight:600;color:#ffffff;letter-spacing:3px;text-transform:uppercase;text-align:center}
+#tb .t2{font-size:9px;color:#7dd8e8;margin-top:3px;letter-spacing:1.5px;text-align:center}
+#tb-center{text-align:center}
+#tb-right{position:absolute;right:20px;display:flex;gap:8px;align-items:center}
+#tb .bd{font-size:7px;color:#7dd8e8;border:1px solid #3a6a7a;padding:3px 10px;letter-spacing:1px;white-space:nowrap;cursor:pointer}
 /* MAIN AREA */
 #mn{display:flex;flex:1;overflow:hidden;min-height:0}
 /* DRAWING PANEL */
-#cv{flex:1;overflow:hidden;position:relative}
+#cv{flex:1;overflow:hidden;position:relative;background:#f0f4f8}
 #cv svg{width:100%;height:100%;display:block}
 /* KNOWLEDGE PANEL */
 #pn{width:300px;background:#fff;border-left:2px solid #1a2e3e;overflow-y:auto;flex-shrink:0;transition:width .25s}
@@ -34,18 +36,19 @@ body{display:flex;flex-direction:column}
 .kv .k{color:#7a9aaa}.kv .v{color:#1a2e3e;font-weight:500}
 .wn{background:#fff8e8;border:1px solid #e8a000;border-radius:2px;padding:7px 10px;margin-top:8px;font-size:9.5px;color:#7a4000;line-height:1.6}
 /* LEGEND */
-#lg{display:flex;gap:10px;flex-wrap:wrap;padding:4px 14px;background:#1a2e3e;flex-shrink:0;height:24px;align-items:center}
-.li{display:flex;align-items:center;gap:4px;font-size:7.5px;color:#5a7a8a;white-space:nowrap}
+#lg{display:flex;gap:10px;flex-wrap:wrap;padding:4px 20px;background:#1a2e3e;flex-shrink:0;height:24px;align-items:center}
+.li{display:flex;align-items:center;gap:4px;font-size:7.5px;color:#7dd8e8;white-space:nowrap}
 .ll{width:20px;height:3px}
 .eq{cursor:pointer;transition:filter .15s}.eq:hover{filter:brightness(.82) saturate(1.4)}
 </style>
 </head>
 <body>
 <div id="tb">
-  <div><div class="t1">ZIPP Dryers · Zeeland Factory · Introduction Module</div>
-  <div class="t2">Mead Johnson Nutritionals · Zeeland, MI · TFD-1000 · NIRO Hudson Inc. · 2026</div></div>
-  <div style="display:flex;gap:8px;align-items:center">
-    <div class="bd" onclick="showQR()" style="cursor:pointer;color:#7dd8e8;border-color:#3a6a7a">&#9707; QR CODE</div>
+  <div id="tb-center">
+    <div class="t1">ZIPP Dryers · Zeeland Factory · Introduction Module</div>
+  </div>
+  <div id="tb-right">
+    <div class="bd" onclick="showQR()">&#9707; QR CODE</div>
     <div class="bd">Click any equipment</div>
   </div>
 </div>
@@ -66,7 +69,7 @@ body{display:flex;flex-direction:column}
     <path d="M40 0L0 0 0 40" fill="none" stroke="#cdd8e0" stroke-width=".5"/>
   </pattern>
 </defs>
-<rect width="1020" height="1060" fill="#dce6ee"/>
+<rect width="1020" height="1060" fill="#ffffff"/>
 <rect width="1020" height="1060" fill="url(#gr)"/>
 
 <!-- ELEVATION RULER -->
@@ -223,9 +226,11 @@ body{display:flex;flex-direction:column}
 
 <!-- FINES RETURN — from cyclone bottom, up and left, down into disperser at nozzle level -->
 <path d="M485 446 L485 460 L600 460 L600 14 L255 14 L255 110" stroke="#c85a00" stroke-width="3" fill="none" stroke-dasharray="8 3" marker-end="url(#ar2)"/>
-<rect x="390" y="18" width="68" height="22" rx="2" fill="#fff8f0" stroke="#c85a00" stroke-width="1"/>
-<text x="424" y="27" text-anchor="middle" fill="#c85a00" font-size="7" font-weight="600" font-family="monospace">FINES</text>
-<text x="424" y="36" text-anchor="middle" fill="#c85a00" font-size="7" font-family="monospace">RETURN ↓</text>
+<g class="eq" onclick="openP('cyclone')">
+  <rect x="470" y="18" width="68" height="22" rx="2" fill="#fff8f0" stroke="#c85a00" stroke-width="1.5"/>
+  <text x="504" y="27" text-anchor="middle" fill="#c85a00" font-size="7" font-weight="600" font-family="monospace">FINES</text>
+  <text x="504" y="36" text-anchor="middle" fill="#c85a00" font-size="7" font-family="monospace">RETURN</text>
+</g>
 
 <!-- BAGHOUSE ×1 — right of cyclones, 131'-10" (y=55) to 77'-8" (y=434) -->
 <g id="g-bag" class="eq" onclick="openP('baghouse')">
@@ -413,9 +418,7 @@ body{display:flex;flex-direction:column}
 <text x="80" y="509" text-anchor="middle" fill="#1565c0" font-size="6.5" font-family="monospace">↑ TO NOZZLES</text>
 
 <!-- TITLE BLOCK -->
-<rect x="55" y="1010" width="600" height="24" fill="#1a2e3e"/>
-<text x="65" y="1021" fill="#7dd8e8" font-size="8" font-family="monospace">ZIPP DRYERS  ·  ZEELAND FACTORY  ·  INTRODUCTION MODULE  ·  2026</text>
-<text x="65" y="1031" fill="#4a7a8a" font-size="7" font-family="monospace">Mead Johnson Nutritionals  ·  Zeeland, MI  ·  TFD-1000  ·  NIRO Hudson Inc.</text>
+
 
 </svg>
 </div>
@@ -430,14 +433,7 @@ body{display:flex;flex-direction:column}
 </div>
 </div>
 
-<div id="lg">
-  <div class="li"><div class="ll" style="background:#c62828"></div>Hot inlet air</div>
-  <div class="li"><div class="ll" style="background:#1565c0;border-top:1px dashed #1565c0"></div>HP feed line (2,500–4,000 PSI)</div>
-  <div class="li"><div class="ll" style="background:#5a6a7a"></div>Exhaust / gas</div>
-  <div class="li"><div class="ll" style="background:#1a7a30;border-top:1px dashed #1a7a30"></div>Powder flow</div>
-  <div class="li"><div class="ll" style="background:#c85a00;border-top:2px dashed #c85a00"></div>Fines return ↑</div>
-  <div class="li" style="margin-left:auto;color:#8aaabb;font-size:8px">← Click any equipment</div>
-</div>
+
 
 <script>
 const DB={
